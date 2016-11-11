@@ -32,6 +32,16 @@ app.get('/names', function (req, res) {
   res.send(fullName);
 });
 
+app.get('/username', function (req, res) {
+  var username = '';
+  if(req.query.username) {
+    username = req.query.username.split('?')[0];
+    var array = username.split('/');
+    username = '@' + array[array.length-1];
+  }
+  res.send(username);
+});
+
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
