@@ -15,6 +15,23 @@ app.get('/', function (req, res) {
   res.send('sum: ' + sum);
 });
 
+app.get('/names', function (req, res) {
+  var fullName = '';
+  if(req.query.fullname) {
+    var array = req.query.fullname.split(' ');
+    if(array.length > 3) {
+      fullName = 'Invalid fullname';
+    }
+    else {
+      fullName = array[array.length-1];
+      for(var num = 0; num < array.length - 1; num++) {
+        fullName += ' ' + array[num].substring(0,1) + '.'
+      }
+    }
+  }
+  res.send(fullName);
+});
+
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
